@@ -1,23 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.css'
+
+import Logo from './components/template/Logo'
+import Menu from './components/template/Menu'
+import Main from './components/template/Main'
+import img from './assets/images/Mask Group.png'
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Logo />
+      <Menu />
+
+      <Main>
+        <h1 id='title'>Financial Organizer.</h1>
+        <img src={img} alt="Logo" id='imgHome'/>
+        <h1 id='description'>A financial organizer 
+        that can help you make that long-awaited dream come true. 
+        We also help people to never have difficulty at the end of the month again.</h1>
+      </Main>
+
     </div>
   );
 }

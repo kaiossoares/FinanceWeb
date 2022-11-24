@@ -1,0 +1,16 @@
+.menu a {
+    position: relative;
+    text-decoration: none;
+    color: #AFAFF3;
+    padding: 10px;
+    font-size: 19px;
+    padding: 5px;
+    width: 50px;
+    top: 65px;
+    left: 410px;
+    margin: 30px;
+}
+
+.menu a:hover {
+    color: #ffffff;
+}

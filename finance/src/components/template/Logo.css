@@ -1,0 +1,14 @@
+aside.logo img {
+    position: absolute;
+    width: 50px;
+    height: 70.3px;
+    left: 160px;
+    top: 40px;
+}
+
+.logoLetra {
+    position: absolute;
+    width: 50px;
+    left: 225px;
+    top: 40px;
+}

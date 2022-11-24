@@ -1,38 +1,76 @@
+:root {
+  --bg-menu: #bdbbbb;
+  --logo-width: 150px;
+  --content-header-height: 60px;
+  --content-footer-height: 40px;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  color: #FFFFFF;
+}
+
+/* Lay-out */
 .App {
-  text-align: center;
+  margin: -8px;
+  display: grid;
+  grid-template-columns: var(--logo-width) 1fr;
+  grid-template-rows:
+    var(--content-header-height) 1fr var(--content-footer-height);
+  grid-template-areas:
+    "logo menu"
+    "content content"
+    "footer footer";
+  height: 100vh;
+  background: radial-gradient(50% 50% at 50% 50%, #5975FF 0%, #3029D9 100%);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+aside.logo {
+  grid-area: logo;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+nav.menu {
+  grid-area: menu;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+div.content {
+  grid-area: content;
 }
 
-.App-link {
-  color: #61dafb;
+h1#title {
+  position: absolute;
+  width: 628px;
+  left: 160px;
+  top: 140px;
+
+  font-family: 'Poppins';
+  font-style: normal;
+  font-size: 100px;
+  line-height: 140px;
+  /* or 136% */
+  color: #FFFFFF;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+h1#description {
+  position: absolute;
+  width: 633.33px;
+  height: 125.33px;
+  left: 160px;
+  top: 500px;
+
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18.6667px;
+  line-height: 37px;
+  /* or 200% */
+
+  color: #FFFFFF;
+}
+
+img#imgHome {
+  position: absolute;
+  width: 55%;
+  left: 680px;
+  top: 148px;
 }
