@@ -1,4 +1,5 @@
 import './Logo.css'
+import React from 'react'
 import logo from '../../assets/images/Group 31.svg'
 
 export default function Logo(props) {
