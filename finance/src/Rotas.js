@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom"
 import Main from './components/template/Main'
 import img from './assets/images/Mask Group.png'
 import CrudGasto from './components/CrudGasto/CrudGasto'
+import CrudGanho from './components/CrudGanho/CrudGanho'
 
 export default function Rotas() {
     return (
@@ -17,6 +18,8 @@ export default function Rotas() {
                             We also help people to never have difficulty at the end of the month again.</h1>
                     </Main>}
             />
+
+            <Route path='/ganhos' element={<CrudGanho />} />
             <Route path='/gastos' element={<CrudGasto />} />
             <Route path='*' element={
 
