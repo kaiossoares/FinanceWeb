@@ -1,29 +1,161 @@
-.tituloListagem {
-    margin-left: 20px;
-}
-
-.listaAlunos {
-    margin-left: 20px;
-
-    font-family: 'Poppins';
+.financeCard {
+  position: fixed;
+  background-color: rgb(54, 48, 74);
+  border-radius: 12px;
+  padding: 30px 90px;
+  padding-bottom: 0px;
+  top: 54%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%)
 }
 
 .cabecTabela {
-    color: white;
-    background-color: black;
-    font-size: 20px;
-    text-align: left;
+  position: relative;
+  text-align: left;
+  left: 2%;
 }
 
-th,
-td {
-    padding: 10px;
-}
-
-.tabTituloRa {
-    width: 100px;
+.listaGanhos {
+  position: relative;
+  left: -9.4%;
+  width: 118.82%;
+  border-spacing: 0;
+  border-collapse: collapse;
+  border-bottom-right-radius: 12px;
+  border-bottom-left-radius: 12px;
+  overflow: hidden;
 }
 
 .tabTituloNome {
-    width: 400px;
+  padding: 4px;
+}
+
+td#nomeGanho {
+  width: 50%;
+  padding-left: 23px;
+  border: none;
+  border-left: none;
+  border-width: none;
+}
+
+td#valorGanho {
+  padding-left: 23px;
+  border: none;
+  border-left: none;
+  border-width: none;
+}
+
+.listaGanhos tbody tr {
+  height: 45px;
+  color: #808080;
+  background-color: #ffffff;
+  border-spacing: 0;
+}
+
+.listaGanhos tbody tr:hover>td {
+  background-color: rgb(245, 245, 245);
+  color: #555555;
+}
+
+.listaGanhos tbody tr:nth-child(odd) {
+  background-color: rgb(245, 245, 245);
+}
+
+.btn {
+  align-items: center;
+  appearance: none;
+  background-color: #fff;
+  border: 1px solid #dbdbdb;
+  border-radius: .375em;
+  box-shadow: none;
+  box-sizing: border-box;
+  color: #363636;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  height: 2.5em;
+  justify-content: center;
+  line-height: 1.5;
+  position: relative;
+  text-align: center;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  padding: 8px 12px;
+  margin: 5px 5px 30px;
+  left: 9%;
+}
+
+.btn:active {
+  border-color: #4a4a4a;
+  outline: 0;
+}
+
+.btn:focus {
+  border-color: #485fc7;
+  outline: 0;
+}
+
+.btn:hover {
+  border-color: #b5b5b5;
+}
+
+.btn:focus:not(:active) {
+  box-shadow: rgba(72, 95, 199, .25) 0 0 0 .125em;
+}
+
+.inclui-container {
+  position: relative;
+  left: -50px;
+}
+
+label {
+  padding: 10px;
+}
+
+.form-input {
+  align-items: center;
+  appearance: none;
+  background-color: #fff;
+  border: 1px solid #dbdbdb;
+  border-radius: .375em;
+  box-shadow: none;
+  box-sizing: border-box;
+  color: #363636;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  padding: 8px 12px;
+  margin: 5px 5px 30px;
+}
+
+.edit-button {
+  position: relative;
+  height: 45px;
+  width: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  left: 110%;
+}
+
+.edit-button img {
+  width: 26px;
+}
+
+.delete-button {
+  position: relative;
+  height: 45px;
+  width: 45px;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  left: 50%;
+}
+
+.delete-button img {
+  width: 19px;
 }
