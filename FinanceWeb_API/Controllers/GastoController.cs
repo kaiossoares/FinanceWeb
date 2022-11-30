@@ -1,7 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using FinanceWeb_API.Data;
 using FinanceWeb_API.Models;
@@ -10,27 +6,27 @@ namespace FinanceWeb_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class GanhoController : ControllerBase
+    public class GastoController : ControllerBase
     {
         private FinanceContext _context;
-        public GanhoController(FinanceContext context)
+        public GastoController (FinanceContext context)
         {
             // construtor
             _context = context;
         }
 
         [HttpGet]
-        public ActionResult<List<Ganho>> GetAll()
+        public ActionResult<List<Gasto>> GetAll()
         {
-            return _context.Ganho.ToList();
+            return _context.Gasto.ToList();
         }
 
-        [HttpGet("{GanhoId}")]
-        public ActionResult<List<Ganho>> Get(int GanhoId)
+        [HttpGet("{GastoId}")]
+        public ActionResult<List<Gasto>> Get(int GastoId)
         {
             try
             {
-                var result = _context.Ganho.Find(GanhoId);
+                var result = _context.Gasto.Find(GastoId);
                 if (result == null)
                 {
                     return NotFound();
@@ -44,15 +40,15 @@ namespace FinanceWeb_API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> post(Ganho model)
+        public async Task<ActionResult> post(Gasto model)
         {
             try
             {
-                _context.Ganho.Add(model);
+                _context.Gasto.Add(model);
                 if (await _context.SaveChangesAsync() == 1)
                 {
                     //return Ok();
-                    return Created($"/api/Ganho/{model.id}", model);
+                    return Created($"/api/Gasto/{model.id}", model);
                 }
             }
             catch
@@ -63,21 +59,21 @@ namespace FinanceWeb_API.Controllers
             return BadRequest();
         }
 
-        [HttpPut("{GanhoId}")]
-        public async Task<IActionResult> put(int GanhoId, Ganho dadosGanhoAlt)
+        [HttpPut("{GastoId}")]
+        public async Task<IActionResult> put(int GastoId, Gasto dadosGastoAlt)
         {
             try
             {
-                //verifica se existe Ganho a ser alterado
-                var result = await _context.Ganho.FindAsync(GanhoId);
-                if (GanhoId != result.id)
+                //verifica se existe Gasto a ser alterado
+                var result = await _context.Gasto.FindAsync(GastoId);
+                if (GastoId != result.id)
                 {
                     return BadRequest();
                 }
-                result.nomeGanho = dadosGanhoAlt.nomeGanho;
-                result.valorGanho = dadosGanhoAlt.valorGanho;
+                result.nomeGasto = dadosGastoAlt.nomeGasto;
+                result.valorGasto = dadosGastoAlt.valorGasto;
                 await _context.SaveChangesAsync();
-                return Created($"/api/ganho/{dadosGanhoAlt.id}", dadosGanhoAlt);
+                return Created($"/api/Gasto/{dadosGastoAlt.id}", dadosGastoAlt);
             }
             catch
             {
@@ -85,19 +81,19 @@ namespace FinanceWeb_API.Controllers
             }
         }
 
-        [HttpDelete("{GanhoId}")]
-        public async Task<ActionResult> delete(int GanhoId)
+        [HttpDelete("{GastoId}")]
+        public async Task<ActionResult> delete(int GastoId)
         {
             try
             {
-                //verifica se existe ganho a ser excluído
-                var ganho = await _context.Ganho.FindAsync(GanhoId);
-                if (ganho == null)
+                //verifica se existe gasto a ser excluído
+                var gasto = await _context.Gasto.FindAsync(GastoId);
+                if (gasto == null)
                 {
                     //método do EF
                     return NotFound();
                 }
-                _context.Remove(ganho);
+                _context.Remove(gasto);
                 await _context.SaveChangesAsync();
                 return NoContent();
             }

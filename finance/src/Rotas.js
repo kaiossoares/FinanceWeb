@@ -4,6 +4,8 @@ import Main from './components/template/Main'
 import img from './assets/images/Mask Group.png'
 import CrudGasto from './components/CrudGasto/CrudGasto'
 import CrudGanho from './components/CrudGanho/CrudGanho'
+import CrudMeta from './components/CrudMeta/CrudMeta'
+import Login from './components/Login/Login'
 
 export default function Rotas() {
     return (
@@ -21,6 +23,8 @@ export default function Rotas() {
 
             <Route path='/ganhos' element={<CrudGanho />} />
             <Route path='/gastos' element={<CrudGasto />} />
+            <Route path='/metas'  element={<CrudMeta />} />
+            <Route path='/login'  element={<Login />} />
             <Route path='*' element={
 
                 <Main title="Bem Vindo!">

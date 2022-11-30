@@ -1,0 +1,96 @@
+.financeCardMeta {
+    position: fixed;
+    background-color: rgb(54, 48, 74);
+    border-radius: 12px;
+    padding: 30px 70px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    top: 54%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}
+
+.listaMeta {
+    position: relative;
+    left: -5.54%;
+    width: 105.5%;
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+    overflow: hidden;
+    border-collapse: collapse;
+    border: 0;
+}
+
+input#valorMeta {
+    width: 180px;
+}
+
+td#nomeMeta {
+    width: 25%;
+    padding-left: 23px;
+}
+
+td#valorMeta {
+    padding-left: 23px;
+}
+
+.listaMeta tbody tr {
+    height: 45px;
+    color: #808080;
+    background-color: #ffffff;
+}
+
+.listaMeta tbody tr:hover>td {
+    background-color: rgb(245, 245, 245);
+    color: #555555;
+}
+
+.listaMeta tbody tr:nth-child(odd) {
+    background-color: rgb(245, 245, 245);
+}
+
+.btnMeta {
+    align-items: center;
+    appearance: none;
+    background-color: #fff;
+    border: 1px solid #dbdbdb;
+    border-radius: .375em;
+    box-shadow: none;
+    box-sizing: border-box;
+    color: #363636;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    height: 2.5em;
+    justify-content: center;
+    line-height: 1.5;
+    position: relative;
+    text-align: center;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    padding: 8px 12px;
+    margin: 5px 5px 30px;
+    left: 2%;
+}
+
+.btnMeta:active {
+    border-color: #4a4a4a;
+    outline: 0;
+}
+
+.btnMeta:focus {
+    border-color: #485fc7;
+    outline: 0;
+}
+
+.btnMeta:hover {
+    border-color: #b5b5b5;
+}
+
+.btnMeta:focus:not(:active) {
+    box-shadow: rgba(72, 95, 199, .25) 0 0 0 .125em;
+}

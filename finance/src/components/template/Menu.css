@@ -14,3 +14,26 @@
 .menu a:hover {
     color: #ffffff;
 }
+
+.menuLogin a {
+    position: relative;
+    text-decoration: none;
+    color: #AFAFF3;
+    padding: 10px;
+    font-size: 19px;
+    padding: 0.19em 1em;
+    width: 1px;
+    top: 37px;
+    left: 1050px;
+    margin: 10px;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 100px;
+    border-color: #AFAFF3;
+}
+
+.menuLogin a:hover {
+    transition:all 1s;
+    color: #ffffff;
+    border-color: #ffffff;
+}

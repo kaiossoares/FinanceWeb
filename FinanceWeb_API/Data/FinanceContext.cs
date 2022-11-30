@@ -19,5 +19,8 @@ namespace FinanceWeb_API.Data
         }
 
         public DbSet<Ganho> Ganho { get; set; }
+        public DbSet<Gasto> Gasto { get; set; }
+        public DbSet<Meta> Meta { get; set; }
+        public DbSet<User>? Usuario { get; set; }
     }
 }

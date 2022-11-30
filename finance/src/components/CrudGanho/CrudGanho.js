@@ -5,7 +5,7 @@ import Main from '../template/Main'
 import editButton from '../../assets/images/editButton.svg'
 import deleteButton from '../../assets/images/deleteButton.svg'
 
-const urlAPI = "http://localhost:5165/api/ganho";
+const urlAPI = "http://localhost:5165/api/ganho"
 
 const initialState = {
     ganho: { id: 0, nomeGanho: '', valorGanho: 0 },
@@ -13,13 +13,17 @@ const initialState = {
 }
 
 export default class CrudGanho extends Component {
-
+    
     state = { ...initialState }
 
     componentDidMount() {
         axios(urlAPI).then(resp => {
             this.setState({ lista: resp.data })
         })
+    }
+
+    controlarInputGanho(evt) {
+        this.setState({ ganho: evt })
     }
 
     limpar() {
@@ -50,6 +54,23 @@ export default class CrudGanho extends Component {
         this.setState({ ganho })
     }
 
+    mascaraMoeda(value) {
+        const onlyDigits = value.toString()
+            .split("")
+            .filter(s => /\d/.test(s))
+            .join("")
+            .padStart(3, "0")
+        const digitsFloat = onlyDigits.slice(0, -2) + "." + onlyDigits.slice(-2)
+        return this.maskCurrency(digitsFloat)
+    }
+
+    maskCurrency(valor, locale = 'pt-BR', currency = 'BRL') {
+        return new Intl.NumberFormat(locale, {
+            style: 'currency',
+            currency
+        }).format(valor)
+    }
+
     carregar(ganho) {
         this.setState({ ganho })
     }
@@ -68,8 +89,8 @@ export default class CrudGanho extends Component {
     }
 
     renderTable() {
-        return (
 
+        return (
             <div className="financeCard">
                 <div className="inclui-container">
                     <label> Nome do Ativo: </label>
@@ -89,13 +110,14 @@ export default class CrudGanho extends Component {
                     <input
                         type="text"
                         id="valorGanho"
-                        placeholder="Valor do Ganho"
+                        placeholder="Valor do Ativo"
                         className="form-input"
                         name="valorGanho"
+                        //onInput={e => this.mascaraMoeda(e)}
 
-                        value={this.state.ganho.valorGanho}
+                        value={this.mascaraValor(this.state.ganho)}
 
-                        onChange={e => this.atualizaCampo(e)}
+                        onChange={this.controlarInputGanho }
                     />
 
                     <button className="btn"
@@ -122,7 +144,7 @@ export default class CrudGanho extends Component {
                                 (ganho) =>
                                     <tr key={ganho.id}>
                                         <td id='nomeGanho'>{ganho.nomeGanho}</td>
-                                        <td id='valorGanho'>R$ {ganho.valorGanho.toFixed(2)}</td>
+                                        <td id='valorGanho'>{ganho.valorGanho.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</td>
                                         <td id='editButton'>
                                             <div className="edit-button" onClick={() => this.carregar(ganho)}>
                                                 <img src={editButton} alt="Editar" />

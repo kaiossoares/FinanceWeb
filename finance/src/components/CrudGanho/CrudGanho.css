@@ -18,13 +18,13 @@
 
 .listaGanhos {
   position: relative;
-  left: -9.4%;
-  width: 118.82%;
-  border-spacing: 0;
-  border-collapse: collapse;
+  left: -9.36%;
+  width: 118.8%;
   border-bottom-right-radius: 12px;
   border-bottom-left-radius: 12px;
   overflow: hidden;
+  border-collapse: collapse;
+  border: 0;
 }
 
 .tabTituloNome {
@@ -34,23 +34,16 @@
 td#nomeGanho {
   width: 50%;
   padding-left: 23px;
-  border: none;
-  border-left: none;
-  border-width: none;
 }
 
 td#valorGanho {
   padding-left: 23px;
-  border: none;
-  border-left: none;
-  border-width: none;
 }
 
 .listaGanhos tbody tr {
   height: 45px;
   color: #808080;
   background-color: #ffffff;
-  border-spacing: 0;
 }
 
 .listaGanhos tbody tr:hover>td {
