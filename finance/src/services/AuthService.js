@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5165/api/Home/";
+const API_URL = "http://localhost:5165/api/Casa/";
 
 const login = (username, senha) => {
     return axios

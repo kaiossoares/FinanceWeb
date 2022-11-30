@@ -49,7 +49,7 @@ export default function Login() {
                     <input
                         type="text"
                         value={username}
-                        placeholder="Digite o e-mail"
+                        placeholder="Digite o username"
                         className="inputAuth"
                         onChange={({ target }) => {
                             setUsername(target.value);

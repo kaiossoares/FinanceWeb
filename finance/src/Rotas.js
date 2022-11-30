@@ -1,13 +1,26 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Routes, Route } from "react-router-dom"
 import Main from './components/template/Main'
 import img from './assets/images/Mask Group.png'
 import CrudGasto from './components/CrudGasto/CrudGasto'
 import CrudGanho from './components/CrudGanho/CrudGanho'
 import CrudMeta from './components/CrudMeta/CrudMeta'
+import AuthService from './services/AuthService'
 import Login from './components/Login/Login'
+import Logout from './components/Logout/Logout'
+import './Rotas.css'
 
 export default function Rotas() {
+
+    const [currentUser, setCurrentUser] = useState(undefined)
+
+    useEffect(() => {
+        const user = AuthService.getCurrentUser()
+        if (user) {
+            setCurrentUser(user)
+        }
+    }, []);
+
     return (
         <Routes>
             <Route exact path='/'
@@ -21,15 +34,46 @@ export default function Rotas() {
                     </Main>}
             />
 
-            <Route path='/ganhos' element={<CrudGanho />} />
-            <Route path='/gastos' element={<CrudGasto />} />
-            <Route path='/metas'  element={<CrudMeta />} />
-            <Route path='/login'  element={<Login />} />
-            <Route path='*' element={
-
-                <Main title="Bem Vindo!">
-                    <div>Página não encontrada</div>
-                </Main>} />
+            {currentUser ? (
+                <Route exact path='/ganhos'
+                    element={<CrudGanho />}
+                />
+            ) : (
+                <Route exact path='/ganhos'
+                    element={
+                        <Main id='autorizado'>
+                            <div>Não autorizado!</div>
+                        </Main>
+                    }
+                />
+            )}
+            {currentUser ? (
+                <Route exact path='/gastos'
+                    element={
+                        <Main>
+                            <div>Página de gastos...</div>
+                        </Main>
+                    }
+                />
+            ) : (
+                <Route exact path='/gastos'
+                    element={
+                        <Main>
+                            <div>Não autorizado!</div>
+                        </Main>
+                    }
+                />
+            )}
+            <Route exact path='/metas'
+                element={
+                    <Main>
+                        <div>Não autorizado! Assine para ter acesso!</div>
+                    </Main>
+                }
+            />
+            <Route path='/login' element={<Login />} />
+            <Route path='/logout' element={<Logout />} />
+            <Route path="*" to='/' />
 
         </Routes>
     )
