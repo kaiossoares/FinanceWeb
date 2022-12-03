@@ -13,7 +13,7 @@ const getAssinanteBoard = async () => {
     return await axios.get(API_URL + "meta", {
         headers: {
             Authorization:
-                'assinante ' + user.token
+            'Bearer ' + user.token
         }
     })
 }

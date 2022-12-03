@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using FinanceWeb_API.Data;
 using FinanceWeb_API.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FinanceWeb_API.Controllers
 {
@@ -18,6 +19,7 @@ namespace FinanceWeb_API.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "assinante")]
         public ActionResult<List<Meta>> GetAll()
         {
             return _context.Meta.ToList();

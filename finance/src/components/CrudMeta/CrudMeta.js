@@ -25,8 +25,10 @@ export default function CrudMeta(props) {
     const [state, setState] = useState(initialState)
 
     useEffect(() => {
+        console.log(state)
         UserService.getAssinanteBoard().then(
             (response) => {
+
                 console.log("useEffect getAssinanteBoard: " + response.data)
                 setLista(response.data);
                 setMens(null);
