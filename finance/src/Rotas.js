@@ -42,35 +42,38 @@ export default function Rotas() {
                 <Route exact path='/ganhos'
                     element={
                         <Main id='autorizado'>
-                            <div>Não autorizado!</div>
+                            <div id='tabDiv'>Não autorizado! Faça o Login para ter acesso</div>
                         </Main>
                     }
                 />
             )}
             {currentUser ? (
                 <Route exact path='/gastos'
-                    element={
-                        <Main>
-                            <div>Página de gastos...</div>
-                        </Main>
-                    }
+                    element={<CrudGasto/>}
                 />
             ) : (
                 <Route exact path='/gastos'
                     element={
                         <Main>
-                            <div>Não autorizado!</div>
+                            <div id='tabDiv'>Não autorizado! Faça o Login para ter acesso</div>
                         </Main>
                     }
                 />
             )}
-            <Route exact path='/metas'
-                element={
-                    <Main>
-                        <div>Não autorizado! Assine para ter acesso!</div>
-                    </Main>
-                }
-            />
+             {currentUser ? (
+                <Route exact path='/metas'
+                    element={<CrudMeta/>}
+                />
+            ) : (
+                <Route exact path='/metas'
+                    element={
+                        <Main>
+                            <div id='tabDiv'>Não autorizado! Faça o Login para ter acesso</div>
+                        </Main>
+                    }
+                />
+            )}
+
             <Route path='/login' element={<Login />} />
             <Route path='/logout' element={<Logout />} />
             <Route path="*" to='/' />

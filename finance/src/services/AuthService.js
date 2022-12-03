@@ -1,17 +1,17 @@
-import axios from "axios";
+import axios from "axios"
 
-const API_URL = "http://localhost:5165/api/Casa/";
+const API_URL = "http://localhost:5165/api/Casa/"
 
 const login = (username, senha) => {
     return axios
-        .post(API_URL + "auth", {
+        .post(API_URL + "login", {
             username,
             senha,
         })
         .then((response) => {
             console.log("response: " + JSON.stringify(response.data.token))
             if (response.data.token) {
-                localStorage.setItem("user", JSON.stringify(response.data));
+                localStorage.setItem("user", JSON.stringify(response.data))
             }
             return response.data;
         });
@@ -22,7 +22,7 @@ const logout = () => {
 };
 
 const getCurrentUser = () => {
-    return JSON.parse(localStorage.getItem("user"));
+    return JSON.parse(localStorage.getItem("user"))
 };
 
 const AuthService = {
@@ -31,4 +31,4 @@ const AuthService = {
     getCurrentUser,
 };
 
-export default AuthService;
+export default AuthService

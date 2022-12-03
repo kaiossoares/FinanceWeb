@@ -69,8 +69,8 @@ h1#description {
 }
 
 img#imgHome {
-  position: absolute;
+  position: fixed;
   width: 55%;
-  left: 680px;
-  top: 148px;
+  left: 730px;
+  top: 147px;
 }

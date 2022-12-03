@@ -1,7 +1,7 @@
-Main#autorizado {
+div#tabDiv {
     position: fixed;
     font-size: 25px;
-    top: 45%;
+    top: 50%;
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, -50%)

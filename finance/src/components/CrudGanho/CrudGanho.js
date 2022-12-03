@@ -115,9 +115,9 @@ export default class CrudGanho extends Component {
                         name="valorGanho"
                         //onInput={e => this.mascaraMoeda(e)}
 
-                        value={this.mascaraValor(this.state.ganho)}
+                        value={this.state.ganho.valorGanho}
 
-                        onChange={this.controlarInputGanho }
+                        onChange={e => this.atualizaCampo(e)}
                     />
 
                     <button className="btn"

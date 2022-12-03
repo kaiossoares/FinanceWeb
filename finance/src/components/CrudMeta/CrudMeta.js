@@ -4,29 +4,51 @@ import './CrudMeta.css'
 import Main from '../template/Main'
 import editButton from '../../assets/images/editButton.svg'
 import deleteButton from '../../assets/images/deleteButton.svg'
+import UserService from '../../services/UserService'
 
 const urlAPI = "http://localhost:5165/api/meta"
+
+const user = JSON.parse(localStorage.getItem("user"))
 
 const initialState = {
     meta: { id: 0, nomeMeta: '', valorMeta: 0, valorDestinadoMes: 0 },
     lista: []
 }
 
-export default class CrudMeta extends Component {
+const { useState, useEffect } = React
 
-    state = { ...initialState }
+export default function CrudMeta(props) {
 
-    componentDidMount() {
-        axios(urlAPI).then(resp => {
-            this.setState({ lista: resp.data })
-        })
-    }
+    const [lista, setLista] = useState([])
+    const [mens, setMens] = useState([])
+    const [meta, setMeta] = useState('')
+    const [state, setState] = useState(initialState)
 
-    limpar() {
+    useEffect(() => {
+        UserService.getAssinanteBoard().then(
+            (response) => {
+                console.log("useEffect getAssinanteBoard: " + response.data)
+                setLista(response.data);
+                setMens(null);
+            },
+            (error) => {
+                const _mens =
+                    (error.response &&
+                        error.response.data &&
+                        error.response.data.message) ||
+                    error.message ||
+                    error.toString();
+                setMens(_mens);
+                console.log("_mens: " + _mens);
+            }
+        );
+    }, [])
+
+    const limpar = () => {
         this.setState({ meta: initialState.meta })
     }
 
-    salvar() {
+    const salvar = () => {
         const meta = this.state.meta
         const metodo = meta.id ? 'put' : 'post'
         const url = meta.id ? `${urlAPI}/${meta.id}` : urlAPI
@@ -38,19 +60,19 @@ export default class CrudMeta extends Component {
             })
     }
 
-    getListaAtualizada(meta, add = true) {
+    const getListaAtualizada = (meta, add = true) => {
         const lista = this.state.lista.filter(g => g.id !== meta.id)
         if (add) lista.unshift(meta)
         return lista
     }
 
-    atualizaCampo(event) {
-        const meta = { ...this.state.meta }
-        meta[event.target.name] = event.target.value
-        this.setState({ meta })
+    const atualizaCampo = (event) => {
+        const meta = setState(meta) 
+        meta[event.target.nomeMeta] = event.target.value
+        setState(meta)
     }
 
-    mascaraMoeda(event) {
+    const mascaraMoeda = (event) => {
         const onlyDigits = event.target.value
             .split("")
             .filter(s => /\d/.test(s))
@@ -60,31 +82,31 @@ export default class CrudMeta extends Component {
         event.target.value = this.maskCurrency(digitsFloat)
     }
 
-    maskCurrency(valor, locale = 'pt-BR', currency = 'BRL') {
+    const maskCurrency = (valor, locale = 'pt-BR', currency = 'BRL') => {
         return new Intl.NumberFormat(locale, {
             style: 'currency',
             currency
         }).format(valor)
     }
 
-    carregar(meta) {
-        this.setState({ meta })
+    const carregar = (meta) => {
+        setState({ meta })
     }
 
-    remover(meta) {
+    const remover = (meta) => {
         const url = urlAPI + "/" + meta.id;
         if (window.confirm("Confirma remoção do meta: " + meta.nomeMeta)) {
             console.log("entrou no confirm");
 
             axios['delete'](url, meta)
                 .then(resp => {
-                    const lista = this.getListaAtualizada(meta, false)
+                    const lista = getListaAtualizada(meta, false)
                     this.setState({ meta: initialState.meta, lista })
                 })
         }
     }
 
-    renderTable() {
+    const renderTable = () => {
 
         return (
             <div className="financeCardMeta">
@@ -97,9 +119,9 @@ export default class CrudMeta extends Component {
                         className="form-input"
                         name="nomeMeta"
 
-                        value={this.state.meta.nomeMeta}
+                        value={meta}
 
-                        onChange={e => this.atualizaCampo(e)}
+                        onChange={e => atualizaCampo(e)}
                     />
 
                     <label> Valor da Meta: </label>
@@ -109,11 +131,11 @@ export default class CrudMeta extends Component {
                         placeholder="Valor da Meta"
                         className="form-input"
                         name="valorMeta"
-                        onInput={e => this.mascaraMoeda(e)}
+                        //onInput={e => mascaraMoeda(e)}
 
-                        value={this.state.meta.valorMeta.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+                        value={meta.valorMeta}
 
-                        onChange={e => this.atualizaCampo(e)}
+                        onChange={e => atualizaCampo(e)}
                     />
 
                     <label> Valor Destinado: </label>
@@ -123,19 +145,19 @@ export default class CrudMeta extends Component {
                         placeholder="Valor Destinado"
                         className="form-input"
                         name="valorDestinadoMes"
-                        onInput={e => this.mascaraMoeda(e)}
+                        //onInput={e => this.mascaraMoeda(e)}
 
-                        value={this.state.meta.valorDestinadoMes.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+                        value={meta.valorDestinadoMes}
 
-                        onChange={e => this.atualizaCampo(e)}
+                        onChange={e => atualizaCampo(e)}
                     />
 
                     <button className="btnMeta"
-                        onClick={e => this.salvar(e)} >
+                        onClick={e => salvar(e)} >
                         Salvar
                     </button>
                     <button className="btnMeta"
-                        onClick={e => this.limpar(e)} >
+                        onClick={e => limpar(e)} >
                         Cancelar
                     </button>
                 </div>
@@ -151,19 +173,19 @@ export default class CrudMeta extends Component {
                         </thead>
 
                         <tbody>
-                            {this.state.lista.map(
+                            {lista.map(
                                 (meta) =>
                                     <tr key={meta.id}>
                                         <td id='nomeMeta'>{meta.nomeMeta}</td>
                                         <td id='valorMeta'>{meta.valorMeta.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</td>
                                         <td id='valorMeta'>{meta.valorDestinadoMes.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</td>
                                         <td id='editButton'>
-                                            <div className="edit-button" onClick={() => this.carregar(meta)}>
+                                            <div className="edit-button" onClick={() => carregar(meta)}>
                                                 <img src={editButton} alt="Editar" />
                                             </div>
                                         </td>
                                         <td id='deleteButton'>
-                                            <div className="delete-button" onClick={() => this.remover(meta)}>
+                                            <div className="delete-button" onClick={() => remover(meta)}>
                                                 <img src={deleteButton} alt="Deletar" />
                                             </div>
                                         </td>
@@ -176,12 +198,10 @@ export default class CrudMeta extends Component {
         )
     }
 
-    render() {
-        return (
-            <Main>
-                {this.renderTable()}
-            </Main>
-        )
-    }
+    return (
+        <Main>
+            {(mens) ? "Problema com conexão ou autorização (contactar administrador)." : renderTable()}
+        </Main>
+    )
 
 }

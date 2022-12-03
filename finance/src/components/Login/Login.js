@@ -10,7 +10,7 @@ export default function Login() {
     const navigate = useNavigate()
 
     async function handleSubmit(evento) {
-        evento.preventDefault();
+        evento.preventDefault()
         const userForm = { username, password }
 
         if (!username || !password) {
@@ -20,9 +20,9 @@ export default function Login() {
                 () => {
                     console.log("localStorage: " +
 
-                        localStorage.getItem("user"));
-                    navigate("/");
-                    window.location.reload(); // atualiza o localStorage
+                        localStorage.getItem("user"))
+                    navigate("/")
+                    window.location.reload()// atualiza o localStorage
                 },
                 (error) => {
                     const resMessage =
@@ -30,8 +30,8 @@ export default function Login() {
                             error.response.data &&
                             error.response.data.message) ||
                         error.message ||
-                        error.toString();
-                    setMessage(resMessage);
+                        error.toString()
+                    setMessage(resMessage)
                 }
             )
         }
@@ -52,7 +52,7 @@ export default function Login() {
                         placeholder="Digite o username"
                         className="inputAuth"
                         onChange={({ target }) => {
-                            setUsername(target.value);
+                            setUsername(target.value)
 
                             setMessage("");
                         }}
@@ -69,7 +69,7 @@ export default function Login() {
                         placeholder="Digite a senha"
                         className="inputAuth"
                         onChange={({ target }) => {
-                            setPassword(target.value);
+                            setPassword(target.value)
 
                             setMessage("");
                         }}

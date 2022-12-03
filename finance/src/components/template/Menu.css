@@ -9,6 +9,7 @@
     top: 65px;
     left: 410px;
     margin: 30px;
+    transition: all 0.08s ease-out;
 }
 
 .menu a:hover {
@@ -30,10 +31,10 @@
     border-style: solid;
     border-radius: 100px;
     border-color: #AFAFF3;
+    transition: all 0.3s ease-out;
 }
 
 .menuLogin a:hover {
-    transition:all 1s;
     color: #ffffff;
     border-color: #ffffff;
 }
