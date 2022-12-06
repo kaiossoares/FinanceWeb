@@ -72,9 +72,9 @@ export default class CrudGasto extends Component {
     }
 
     remover(gasto) {
-        const url = urlAPI + "/" + gasto.id;
+        const url = urlAPI + "/" + gasto.id
         if (window.confirm("Confirma remoção do gasto: " + gasto.nomeGasto)) {
-            console.log("entrou no confirm");
+            console.log("entrou no confirm")
 
             axios['delete'](url, gasto)
                 .then(resp => {

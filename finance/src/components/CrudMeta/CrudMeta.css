@@ -94,3 +94,12 @@ td#valorMeta {
 .btnMeta:focus:not(:active) {
     box-shadow: rgba(72, 95, 199, .25) 0 0 0 .125em;
 }
+
+.msgAutenticacao {
+    position: fixed;
+    font-size: 20px;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}

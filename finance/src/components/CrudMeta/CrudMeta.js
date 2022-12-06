@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import './CrudMeta.css'
 import Main from '../template/Main'
@@ -15,8 +15,6 @@ const initialState = {
     lista: []
 }
 
-const { useState, useEffect } = React
-
 export default function CrudMeta(props) {
 
     const [lista, setLista] = useState([])
@@ -28,10 +26,9 @@ export default function CrudMeta(props) {
         console.log(state)
         UserService.getAssinanteBoard().then(
             (response) => {
-
                 console.log("useEffect getAssinanteBoard: " + response.data)
-                setLista(response.data);
-                setMens(null);
+                setLista(response.data)
+                setMens(null)
             },
             (error) => {
                 const _mens =
@@ -39,71 +36,54 @@ export default function CrudMeta(props) {
                         error.response.data &&
                         error.response.data.message) ||
                     error.message ||
-                    error.toString();
-                setMens(_mens);
-                console.log("_mens: " + _mens);
+                    error.toString()
+                setMens(_mens)
+                console.log("_mens: " + _mens)
             }
-        );
+        )
     }, [])
 
     const limpar = () => {
-        this.setState({ meta: initialState.meta })
+        setState({ meta: initialState.meta })
     }
 
     const salvar = () => {
-        const meta = this.state.meta
+        const meta = state.meta
         const metodo = meta.id ? 'put' : 'post'
         const url = meta.id ? `${urlAPI}/${meta.id}` : urlAPI
 
         axios[metodo](url, meta)
             .then(resp => {
-                const lista = this.getListaAtualizada(resp.data)
-                this.setState({ meta: initialState.meta, lista })
+                const lista = getListaAtualizada(resp.data)
+                setState({ meta: initialState.meta, lista })
             })
     }
 
     const getListaAtualizada = (meta, add = true) => {
-        const lista = this.state.lista.filter(g => g.id !== meta.id)
+        const lista = state.lista.filter(g => g.id !== meta.id)
         if (add) lista.unshift(meta)
         return lista
     }
 
     const atualizaCampo = (event) => {
-        const meta = setState(meta) 
-        meta[event.target.nomeMeta] = event.target.value
-        setState(meta)
-    }
-
-    const mascaraMoeda = (event) => {
-        const onlyDigits = event.target.value
-            .split("")
-            .filter(s => /\d/.test(s))
-            .join("")
-            .padStart(3, "0")
-        const digitsFloat = onlyDigits.slice(0, -2) + "." + onlyDigits.slice(-2)
-        event.target.value = this.maskCurrency(digitsFloat)
-    }
-
-    const maskCurrency = (valor, locale = 'pt-BR', currency = 'BRL') => {
-        return new Intl.NumberFormat(locale, {
-            style: 'currency',
-            currency
-        }).format(valor)
+        const meta = { ...state.meta }
+        meta[event.target.name] = event.target.value
+        setState({ ...state, meta })
     }
 
     const carregar = (meta) => {
-        setState({ meta })
+        setState({ ...state, meta })
     }
 
     const remover = (meta) => {
-        const url = urlAPI + "/" + meta.id;
+        const url = urlAPI + "/" + meta.id
         if (window.confirm("Confirma remoção do meta: " + meta.nomeMeta)) {
-            console.log("entrou no confirm");
+            console.log("entrou no confirm")
 
             axios['delete'](url, meta)
                 .then(resp => {
                     const lista = getListaAtualizada(meta, false)
-                    this.setState({ meta: initialState.meta, lista })
+                    setState({ meta: initialState.meta, lista })
                 })
         }
     }
@@ -121,7 +101,7 @@ export default function CrudMeta(props) {
                         className="form-input"
                         name="nomeMeta"
 
-                        value={meta}
+                        value={state.meta.nomeMeta}
 
                         onChange={e => atualizaCampo(e)}
                     />
@@ -135,7 +115,7 @@ export default function CrudMeta(props) {
                         name="valorMeta"
                         //onInput={e => mascaraMoeda(e)}
 
-                        value={meta.valorMeta}
+                        value={state.meta.valorMeta}
 
                         onChange={e => atualizaCampo(e)}
                     />
@@ -149,7 +129,7 @@ export default function CrudMeta(props) {
                         name="valorDestinadoMes"
                         //onInput={e => this.mascaraMoeda(e)}
 
-                        value={meta.valorDestinadoMes}
+                        value={state.meta.valorDestinadoMes}
 
                         onChange={e => atualizaCampo(e)}
                     />
@@ -202,7 +182,7 @@ export default function CrudMeta(props) {
 
     return (
         <Main>
-            {(mens) ? "Problema com conexão ou autorização (contactar administrador)." : renderTable()}
+            {(mens) ? <div className='msgAutenticacao'>Assine o site para ter acesso a essa aba.</div> : renderTable()}
         </Main>
     )
 
