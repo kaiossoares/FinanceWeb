@@ -12,12 +12,19 @@ const user = JSON.parse(localStorage.getItem("user"))
 
 const initialState = {
     meta: { id: 0, nomeMeta: '', valorMeta: 0, valorDestinadoMes: 0 },
-    lista: []
+    lista: [],
+
+    ganho: { id: 0, nomeGanho: '', valorGanho: 0 },
+    listaGanho: [],
+
+    gasto: { id: 0, nomeGasto: '', valorGasto: 0 },
+    listaGasto: []
 }
 
 export default function CrudMeta(props) {
 
     const [lista, setLista] = useState([])
+    const [listaGanho, setListaGanho] = useState([])
     const [mens, setMens] = useState([])
     const [meta, setMeta] = useState('')
     const [state, setState] = useState(initialState)
@@ -28,6 +35,7 @@ export default function CrudMeta(props) {
             (response) => {
                 console.log("useEffect getAssinanteBoard: " + response.data)
                 setLista(response.data)
+                setListaGanho(response.data)
                 setMens(null)
             },
             (error) => {
@@ -42,6 +50,7 @@ export default function CrudMeta(props) {
             }
         )
     }, [])
+    
 
     const limpar = () => {
         setState({ meta: initialState.meta })
@@ -72,6 +81,8 @@ export default function CrudMeta(props) {
     }
 
     const carregar = (meta) => {
+        const valorTotalGanho = initialState.lista.map(valor => valor.valorMeta)
+        console.log(valorTotalGanho)
         setState({ ...state, meta })
     }
 

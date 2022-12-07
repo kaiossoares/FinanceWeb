@@ -32,3 +32,11 @@ td#valorGasto {
 .listaGastos tbody tr:nth-child(odd) {
     background-color: rgb(245, 245, 245);
 }
+
+.dinheiroDisponivel {
+    position: relative;
+    left: -4%;
+    margin-bottom: 1%;
+    font-weight: bold;
+    letter-spacing: 1px;
+}

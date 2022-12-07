@@ -6,10 +6,14 @@ import editButton from '../../assets/images/editButton.svg'
 import deleteButton from '../../assets/images/deleteButton.svg'
 
 const urlAPI = "http://localhost:5165/api/gasto"
+const urlAPIGanho = "http://localhost:5165/api/ganho"
 
 const initialState = {
     gasto: { id: 0, nomeGasto: '', valorGasto: 0 },
-    lista: []
+    lista: [],
+
+    ganho: { id: 0, nomeGanho: '', valorGanho: 0 },
+    listaGanho: []
 }
 
 export default class CrudGasto extends Component {
@@ -19,6 +23,10 @@ export default class CrudGasto extends Component {
     componentDidMount() {
         axios(urlAPI).then(resp => {
             this.setState({ lista: resp.data })
+        })
+
+        axios(urlAPIGanho).then(resp => {
+            this.setState({ listaGanho: resp.data })
         })
     }
 
@@ -84,10 +92,22 @@ export default class CrudGasto extends Component {
         }
     }
 
-    renderTable() {
+    valorTotalGanho() {
+        const valorTotalGanho = this.state.listaGanho.map(valor => valor.valorGanho)
+        const totalGanho = valorTotalGanho.reduce((acc, numero) => acc + numero, 0)
 
+        const valorTotalGasto = this.state.lista.map(valor => valor.valorGasto)
+        const totalGasto = valorTotalGasto.reduce((acc, numero) => acc + numero, 0)
+
+        const dinheiroDisponivel = totalGanho - totalGasto
+
+        return dinheiroDisponivel.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+    }
+
+    renderTable() {
         return (
             <div className="financeCard">
+                <div className='dinheiroDisponivel'>Dinheiro Disponível: {this.valorTotalGanho()}</div>
                 <div className="inclui-container">
                     <label> Nome do Gasto: </label>
                     <input
@@ -109,7 +129,7 @@ export default class CrudGasto extends Component {
                         placeholder="Valor do Gasto"
                         className="form-input"
                         name="valorGasto"
-                        onInput={e => this.mascaraMoeda(e)}
+                        //onInput={e => this.mascaraMoeda(e)}
 
                         value={this.state.gasto.valorGasto}
 

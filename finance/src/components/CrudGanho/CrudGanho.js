@@ -13,7 +13,7 @@ const initialState = {
 }
 
 export default class CrudGanho extends Component {
-    
+
     state = { ...initialState }
 
     componentDidMount() {
@@ -76,9 +76,9 @@ export default class CrudGanho extends Component {
     }
 
     remover(ganho) {
-        const url = urlAPI + "/" + ganho.id;
+        const url = urlAPI + "/" + ganho.id
         if (window.confirm("Confirma remoção do ativo: " + ganho.nomeGanho)) {
-            console.log("entrou no confirm");
+            console.log("entrou no confirm")
 
             axios['delete'](url, ganho)
                 .then(resp => {
@@ -89,7 +89,6 @@ export default class CrudGanho extends Component {
     }
 
     renderTable() {
-
         return (
             <div className="financeCard">
                 <div className="inclui-container">
