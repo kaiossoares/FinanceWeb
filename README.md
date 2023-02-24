@@ -2,7 +2,7 @@
 
 <br><br>
 ## 🎯 About
-Finance Web is the prototype of a financial organizer. Used to put into practice knowledge in Back-end and Front-end. I'm doing this project because I like how the financial organization works, and I believe it can help many people. Design by [Ridho Tijan](https://www.figma.com/community/file/1010205430182353444).
+Finance Web is the prototype of a financial organizer. Used to put into practice knowledge in Back-end and Front-end. I'm doing this project because I like how the financial organization works, and I believe it can help many people. Used to put knowledge in back end and front end. Back end was made using the C# language with the .NET framework, the front end was done with reactjs. The database was built using SQL Server, with the data being returned in JSON format, through a REST API. Design by [Ridho Tijan](https://www.figma.com/community/file/1010205430182353444).
 
 <br><br>
 ## 🚀 Technologies
