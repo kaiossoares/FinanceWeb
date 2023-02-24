@@ -1,6 +1,8 @@
+![image](https://user-images.githubusercontent.com/105795580/221201723-e0e8c725-a318-4935-ba03-fa58ca068357.png)
+
 <br><br>
 ## 🎯 About
-Finance Web is the prototype of a financial organizer. Used to put into practice knowledge in Back-end and Front-end. I'm doing this project because I like how the financial organization works, and I believe it can help many people.
+Finance Web is the prototype of a financial organizer. Used to put into practice knowledge in Back-end and Front-end. I'm doing this project because I like how the financial organization works, and I believe it can help many people. Design by [Ridho Tijan](https://www.figma.com/community/file/1010205430182353444).
 
 <br><br>
 ## 🚀 Technologies
